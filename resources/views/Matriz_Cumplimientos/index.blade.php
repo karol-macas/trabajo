@@ -22,25 +22,30 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach($cumplimientos as $cumplimiento)
+                @foreach($empleados as $empleado)
                     <tr>
-                        <td>{{ $cumplimiento->id  }}</td>
-                        <td>{{ $cumplimiento->parametro->nombre }}</td>
-                        <td>{{ $cumplimiento->puntos }}</td>
-                        <td>{{ $cumplimiento->empleado->nombre1 }}</td>
-                        <td>{{ $cumplimiento->cargo->nombre_cargo}}</td>
-                        <td>{{ $cumplimiento->supervisor->nombre_supervisor }}</td>
+                        <td>{{ $empleado->id  }}</td>
+                        <td>{{ $empleado->parametro->nombre ?? 'No asignado' }}</td>
+                        <td>{{ $empleado->puntos }}</td>
+                        <td>{{ $empleado->nombre1  }}</td>
+                        <td>{{ $empleado->cargo->nombre_cargo ?? 'No asignado' }}</td>
+                        <td>{{ $empleado->supervisor->nombre_supervisor ?? 'Sin supervisor' }}</td>
                         <td>
-                            <a href="{{ route('matriz_cumplimientos.edit', $cumplimiento) }}" class="btn btn-warning">Editar</a>
-                            
-                            <form action="{{ route('matriz_cumplimientos.destroy', $cumplimiento) }}" method="POST" class="d-inline">
+                            <a href="{{ route('matriz_cumplimientos.edit', $empleado) }}" class="btn btn-warning">Editar</a>
+                            <form action="{{ route('matriz_cumplimientos.destroy', $empleado) }}" method="POST" class="d-inline">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-danger">Eliminar</button>
+                            </form>
                         </td>
                     </tr>
                 @endforeach
             </tbody>
         </table>
+
+        <!-- Paginación -->
+        <div class="mt-3">
+            {{ $empleados->links() }}
+        </div>
     </div>
 @endsection

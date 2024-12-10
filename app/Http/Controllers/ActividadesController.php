@@ -64,9 +64,9 @@ class ActividadesController extends Controller
         $departamentos = Departamento::all();
         $clientes = Cliente::all();
         $cargos = Cargos::all();
-        $supervisores = Supervisor::all();
+        
 
-        return view('Actividades.createActividades', compact('empleados', 'departamentos', 'clientes', 'cargos', 'supervisores'));
+        return view('Actividades.createActividades', compact('empleados', 'departamentos', 'clientes', 'cargos'));
     }
 
     public function store(Request $request)
@@ -88,7 +88,6 @@ class ActividadesController extends Controller
             'prioridad' => 'required|string|in:ALTA,MEDIA,BAJA',
             'departamento_id' => 'required|exists:departamentos,id',
             'cargo_id' => 'required|exists:cargos,id',
-            'supervisor_id' => 'required|exists:supervisores,id',
             'error' => 'required|string|in:CLIENTE,SOFTWARE,MEJORA ERROR,DESARROLLO,OTRO',
         ]);
 
@@ -109,7 +108,8 @@ class ActividadesController extends Controller
         $actividad->prioridad = $request->input('prioridad');
         $actividad->departamento_id = $request->input('departamento_id');
         $actividad->cargo_id = $request->input('cargo_id');
-        $actividad->supervisor_id = $request->input('supervisor_id');
+
+        
         $actividad->error = $request->input('error');
         $actividad->save();
 
@@ -130,8 +130,8 @@ class ActividadesController extends Controller
         $departamentos = Departamento::all();
         $clientes = Cliente::all();
         $cargos = Cargos::all();
-        $supervisores = Supervisor::all();
-        return view('Actividades.editActividades', compact('actividades', 'empleados', 'departamentos', 'clientes', 'cargos', 'supervisor'));
+       
+        return view('Actividades.editActividades', compact('actividades', 'empleados', 'departamentos', 'clientes', 'cargos'));
     }
 
     public function update(Request $request, $id)
@@ -154,7 +154,6 @@ class ActividadesController extends Controller
             'prioridad' => 'required|string|in:ALTA,MEDIA,BAJA',
             'departamento_id' => 'required|exists:departamentos,id',
             'cargo_id' => 'required|exists:cargos,id',
-            'supervisor_id' => 'required|exists:supervisores,id',
             'error' => 'required|string|in:CLIENTE,SOFTWARE,MEJORA ERROR,DESARROLLO,OTRO',
         ]);
 

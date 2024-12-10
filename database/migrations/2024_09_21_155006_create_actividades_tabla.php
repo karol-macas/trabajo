@@ -34,7 +34,7 @@ class CreateActividadesTabla extends Migration
             $table->dateTime('tiempo_inicio')->nullable(); // Campo adicional para inicio del contador
             $table->foreignId('departamento_id')->constrained('departamentos')->onDelete('cascade');
             $table->foreignId('cargo_id')->constrained('cargos')->onDelete('cascade');
-            $table->foreignId('supervisor_id')->constrained('supervisores')->onDelete('cascade');
+            
             $table->timestamps();
         });
     }

@@ -85,9 +85,10 @@ class Empleados extends Model
         return $this->hasMany(RolPago::class);
     }
 
+
     public function esSupervisor()
     {
-        return $this->supervisor !== null; // Si tiene un registro en la tabla de supervisores, es supervisor
+        return $this->supervisor()->exists();
     }
 
 

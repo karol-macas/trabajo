@@ -36,7 +36,6 @@ class Actividades extends Model
         'prioridad',  // Prioridad
         'departamento_id',  // ID de departamento
         'cargo_id',  // ID de cargo
-        'supervisor_id',  // ID de supervisor
         'error',  // Error
     ];
 
@@ -62,11 +61,6 @@ class Actividades extends Model
         return $this->belongsTo(Cargos::class, 'cargo_id');
     }
 
-    public function supervisor()
-    {
-        return $this->belongsTo(Supervisor::class, 'supervisor_id');
-    }
-    
 
     
 }

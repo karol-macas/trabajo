@@ -15,10 +15,23 @@ class MatrizCumplimientoController extends Controller
     public function index()
     {
 
+        // Obtén el usuario autenticado
+        $user = auth()->user();
 
+        // Verifica si el usuario tiene un supervisor (es empleado)
+        if ($user->supervisor) {
+            $supervisorId = $user->supervisor->id;
+
+            // Obtén los empleados supervisados por el supervisor
+            $empleados = Empleados::where('supervisor_id', $supervisorId)->paginate(10);
+        } else {
+            // Si no tiene supervisor, obtienes el mismo empleado (si aplica)
+            // O puedes retornar un mensaje o vista de error.
+            $empleados = Empleados::where('id', $user->id)->paginate(10); // Esto es solo un ejemplo, ajusta según lo necesario
+        }
 
         $cumplimientos = MatrizCumplimiento::with('empleado', 'cargo', 'supervisor')->get();
-        return view('matriz_cumplimientos.index', compact('cumplimientos'));
+        return view('matriz_cumplimientos.index', compact('cumplimientos', 'empleados'));
     }
 
     public function create()
@@ -60,7 +73,7 @@ class MatrizCumplimientoController extends Controller
     public function destroy(MatrizCumplimiento $cumplimiento)
     {
         $cumplimiento->delete();
-    
+
         return redirect()->route('matriz_cumplimientos.index')->with('success', 'Registro eliminado.');
     }
 }

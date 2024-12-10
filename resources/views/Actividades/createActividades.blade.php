@@ -55,9 +55,7 @@
                                                     data-departamento-id="{{ $empleado->departamento->id ?? '' }}"
                                                     data-cargo="{{ $empleado->cargo->nombre_cargo ?? 'Sin cargo' }}"
                                                     data-cargo-id="{{ $empleado->cargo->id ?? '' }}"
-                                                    data-is-supervisor="{{ $empleado->es_supervisor ? 'true' : 'false' }}"
-                                                    data-supervisor="{{ $empleado->supervisor->nombre_supervisor ?? 'Sin supervisor' }}"
-                                                    data-supervisor-id="{{ $empleado->supervisor->id ?? '' }}"
+                                                    
                                                     {{ old('empleado_id') == $empleado->id ? 'selected' : '' }}>
                                                     {{ $empleado->nombre1 }} {{ $empleado->apellido1 }}
                                                 </option>
@@ -223,12 +221,8 @@
                                 </div>
 
                                 <div class="form-group row mb-2">
-                                    <label for="supervisor"
-                                        class="col-md-4 col-form-label text-md-right">Supervisor</label>
-                                    <div class="col-md-6">
-                                        <input type="text" id="supervisor" class="form-control" readonly>
-                                    </div>
-
+                                    
+                                
                                     <!-- Inputs ocultos para enviar los IDs reales al servidor -->
                                     <input type="hidden" name="departamento_id" id="departamento_id">
                                     <input type="hidden" name="cargo_id" id="cargo_id">
@@ -316,29 +310,15 @@
 
     <script>
         function updateEmployeeInfo() {
-            const empleadoSelect = document.getElementById('empleado_id');
-            const selectedOption = empleadoSelect.options[empleadoSelect.selectedIndex];
+    const empleadoSelect = document.getElementById('empleado_id');
+    const selectedOption = empleadoSelect.options[empleadoSelect.selectedIndex];
 
-            // Actualizar datos generales
-            document.getElementById('departamento').value = selectedOption.getAttribute('data-departamento') || '';
-            document.getElementById('departamento_id').value = selectedOption.getAttribute('data-departamento-id') || '';
-            document.getElementById('cargo').value = selectedOption.getAttribute('data-cargo') || '';
-            document.getElementById('cargo_id').value = selectedOption.getAttribute('data-cargo-id') || '';
+    // Actualizar datos generales
+    document.getElementById('departamento').value = selectedOption.getAttribute('data-departamento') || '';
+    document.getElementById('departamento_id').value = selectedOption.getAttribute('data-departamento-id') || '';
+    document.getElementById('cargo').value = selectedOption.getAttribute('data-cargo') || '';
+    document.getElementById('cargo_id').value = selectedOption.getAttribute('data-cargo-id') || '';
 
-            // Verificar si es un supervisor
-            const isSupervisor = selectedOption.getAttribute('data-is-supervisor') === 'true';
-            const supervisorName = selectedOption.getAttribute('data-supervisor') ||
-            'N/A'; // Valor por defecto si no hay supervisor
-
-            if (isSupervisor) {
-                // El empleado es supervisor
-                document.getElementById('supervisor').value = 'Es Supervisor';
-                document.getElementById('supervisor_id').value = ''; // No hay supervisor ID
-            } else {
-                // El empleado tiene un supervisor asignado
-                document.getElementById('supervisor').value = supervisorName;
-                document.getElementById('supervisor_id').value = selectedOption.getAttribute('data-supervisor-id') || '';
-            }
-        }
+}
     </script>
 @endsection

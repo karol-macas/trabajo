@@ -151,6 +151,7 @@
     <div id="app">
         <div class="row">
             <!-- Barra lateral -->
+
             <div class="col-md-3 sidebar" id="sidebar">
                 <div class="sidebar-header">
                     <img src="{{ asset('images/icono-wp.png') }}" alt="Icono" style="height: 50px;">
@@ -162,12 +163,12 @@
                     @foreach ([
                 ['route' => 'empleados.indexEmpleados', 'img' => 'rrhh.png', 'title' => 'RRHH'],
                 ['route' => 'empleados.indexEmpleados', 'img' => 'activos.png', 'title' => 'Activos'],
-                ['route' => 'actividades.indexActividades', 'img' => 'actividades.png', 'title' => 'Actividades', 'submenu' => 
-                [['route' => 'actividades.indexActividades', 'img' => '','title' => 'Ver Actividades']]],
+                ['route' => 'actividades.indexActividades', 'img' => 'actividades.png', 'title' => 'Actividades', 
+                ],
 
                 ['route' => 'clientes.index', 'img' => 'cooperativas.png', 'title' => 'Clientes'],
-                ['route' => 'empleados.indexEmpleados', 'img' => 'clientes.png', 'title' => 'Empleados', 'submenu' =>
-                [['route' => 'empleados.indexEmpleados', 'img' => '','title' => 'Ver Empleados']]],
+                ['route' => 'empleados.indexEmpleados', 'img' => 'clientes.png', 'title' => 'Empleados', 
+                ],
                 ['route' => 'departamentos.index', 'img' => 'departamentos.png', 'title' => 'Departamentos'],
                 ['route' => 'empleados.indexEmpleados', 'img' => 'cobros.png', 'title' => 'Cobros'],
                 ['route' => 'empleados.indexEmpleados', 'img' => 'mensajeria.png', 'title' => 'Mensajería'],
