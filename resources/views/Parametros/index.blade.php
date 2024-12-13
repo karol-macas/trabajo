@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="container mt-7">
-        <h1 class="text-center mb-4">Matriz de Cumplimientos</h1>
+        <h1 class="text-center mb-4">Parametros</h1>
         @if (session('success'))
             <div class="alert alert-success">
                 {{ session('success') }}
@@ -25,7 +25,7 @@
                         <td>{{ $parametro->id }}</td>
                         <td>{{ $parametro->nombre }}</td>
                         <td>
-                            {{ $parametro->departamento ? $parametro->departamento->nombre : 'Sin departamento' }}
+                            {{ $parametro->departamento_id ? $parametro->departamento_id : 'Sin departamento' }}
                         </td>
                         <td>
                             <a href="{{ route('parametros.edit', $parametro) }}" class="btn btn-warning">Editar</a>

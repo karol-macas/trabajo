@@ -23,8 +23,8 @@
                     @csrf
 
                     <div class="form-group mt-3">
-                        <label for="nombre_parametro">Nombre del Parámetro <span class="text-danger">*</span></label>
-                        <input type="text" name="nombre_parametro" class="form-control" value="{{ old('nombre') }}"
+                        <label for="nombre">Nombre del Parámetro <span class="text-danger">*</span></label>
+                        <input type="text" name="nombre" class="form-control" value="{{ old('nombre') }}"
                             required>
 
                     </div>
